@@ -1,0 +1,26 @@
+{
+  "name": "castlewarsio",
+  "version": "1.0.0",
+  "description": "* Install [Tiled map editor](http://www.mapeditor.org) * Open maps/castlewars.tmx",
+  "main": "server/app.js",
+  "dependencies": {
+    "socket.io": "^1.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zubry/castlewars.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zubry/castlewars/issues"
+  },
+  "homepage": "https://github.com/Zubry/castlewars#readme",
+  "engines": {
+    "node": "0.10.x"
+  },
+}
