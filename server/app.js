@@ -15,7 +15,7 @@ const game = new Game(options);
 const routes = require('./router.js')(app);
 const sockets = require('./sockets.js')(io, game);
 
-server.listen(80);
+server.listen(process.env.PORT || 8080);
 
 function game_tick() {
   console.log('tick');
