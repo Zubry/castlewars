@@ -1,6 +1,6 @@
 const io = require('socket.io-client');
 
-const socket = io.connect('http://localhost');
+const socket = io.connect();
 
 import React from 'react';
 import ReactDOM from 'react-dom';
