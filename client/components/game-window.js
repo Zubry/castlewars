@@ -9,21 +9,24 @@ export default class GameWindow extends React.Component {
 
     this.state = {
       connected: false,
-      joined: false
+      joined: false,
+      pid: 0
     };
   }
 
   componentDidMount() {
     this.props.socket
-      .on('connected', () => this.setState({ connected: true }))
+      .on('connected', (map) => this.setState({ connected: true }))
 
     this.props.socket
       .on('game-tick', (c) => console.log(c));
+
+    this.props.socket
+      .on('you-have-joined', (pid) => this.setState({ pid, joined: true }));
   }
 
   handleSubmit(e) {
     this.props.socket.emit('join-game');
-    this.setState({ joined: true });
     e.preventDefault();
   }
 
@@ -38,7 +41,7 @@ export default class GameWindow extends React.Component {
         <button onClick={this.handleSubmit.bind(this)}>Join</button>
       </form>
     } else {
-      return <JoinedGame socket={this.props.socket}></JoinedGame>
+      return <JoinedGame socket={this.props.socket} pid={this.state.pid}></JoinedGame>
     }
   }
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import GameView from './game-view';
+
 export default class JoinedGame extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +17,10 @@ export default class JoinedGame extends React.Component {
   componentDidMount() {
     this.props.socket
       .on('game-tick', (data) => {
+        if (data.ticks > 0) {
+          return false;
+        }
+
         this.setState(data)
       });
   }
@@ -29,9 +35,7 @@ export default class JoinedGame extends React.Component {
               <h2>There are {this.state.lobby.length} players in the lobby</h2>
             </div>
           :
-            <div>
-              { this.state.players.map((player, i) => <div key={i}>{player.id}: {player.team}</div>)}
-            </div>
+            <GameView pid={this.props.pid} socket={this.props.socket}></GameView>
         }
 
       </div>

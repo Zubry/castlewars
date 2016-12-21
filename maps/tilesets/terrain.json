@@ -1,0 +1,62 @@
+[
+  {
+    "x": 0,
+    "y": 0,
+    "name": "water",
+    "solid": true
+  },
+  {
+    "x": 1,
+    "y": 0,
+    "name": "grass1",
+    "solid": false
+  },
+  {
+    "x": 2,
+    "y": 0,
+    "name": "grass2",
+    "solid": false
+  },
+  {
+    "x": 3,
+    "y": 0,
+    "name": "zamorak-floor",
+    "solid": false
+  },
+  {
+    "x": 4,
+    "y": 0,
+    "name": "saradomin-floor",
+    "solid": false
+  },
+  {
+    "x": 5,
+    "y": 0,
+    "name": "mud",
+    "solid": true
+  },
+  {
+    "x": 6,
+    "y": 0,
+    "name": "grass3",
+    "solid": false
+  },
+  {
+    "x": 7,
+    "y": 0,
+    "name": "grass4",
+    "solid": false
+  },
+  {
+    "x": 8,
+    "y": 0,
+    "name": "wood-floor",
+    "solid": false
+  },
+  {
+    "x": 9,
+    "y": 0,
+    "name": "empty",
+    "solid": false
+  }
+]

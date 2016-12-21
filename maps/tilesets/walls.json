@@ -1,0 +1,122 @@
+[
+  {
+    "x": 0,
+    "y": 0,
+    "name": "zamorak-wall-south",
+    "solid": true
+  },
+  {
+    "x": 1,
+    "y": 0,
+    "name": "zamorak-wall-west",
+    "solid": true
+  },
+  {
+    "x": 2,
+    "y": 0,
+    "name": "zamorak-wall-north",
+    "solid": true
+  },
+  {
+    "x": 3,
+    "y": 0,
+    "name": "zamorak-wall-east",
+    "solid": true
+  },
+  {
+    "x": 4,
+    "y": 0,
+    "name": "zamorak-wall-south-east",
+    "solid": true
+  },
+  {
+    "x": 5,
+    "y": 0,
+    "name": "zamorak-wall-south-west",
+    "solid": true
+  },
+  {
+    "x": 6,
+    "y": 0,
+    "name": "zamorak-wall-north-west",
+    "solid": true
+  },
+  {
+    "x": 7,
+    "y": 0,
+    "name": "zamorak-wall-north-east",
+    "solid": true
+  },
+  {
+    "x": 8,
+    "y": 0,
+    "name": "zamorak-portal-south",
+    "solid": true
+  },
+  {
+    "x": 9,
+    "y": 0,
+    "name": "zamorak-portal-east",
+    "solid": true
+  },
+  {
+    "x": 0,
+    "y": 1,
+    "name": "saradomin-wall-south",
+    "solid": true
+  },
+  {
+    "x": 1,
+    "y": 1,
+    "name": "saradomin-wall-west",
+    "solid": true
+  },
+  {
+    "x": 2,
+    "y": 1,
+    "name": "saradomin-wall-north",
+    "solid": true
+  },
+  {
+    "x": 3,
+    "y": 1,
+    "name": "saradomin-wall-east",
+    "solid": true
+  },
+  {
+    "x": 4,
+    "y": 1,
+    "name": "saradomin-wall-south-east",
+    "solid": true
+  },
+  {
+    "x": 5,
+    "y": 1,
+    "name": "saradomin-wall-south-west",
+    "solid": true
+  },
+  {
+    "x": 6,
+    "y": 1,
+    "name": "saradomin-wall-north-west",
+    "solid": true
+  },
+  {
+    "x": 7,
+    "y": 1,
+    "name": "saradomin-wall-north-east",
+    "solid": true
+  },
+  {
+    "x": 8,
+    "y": 1,
+    "name": "saradomin-portal-north",
+    "solid": true
+  },
+  {
+    "x": 9,
+    "y": 1,
+    "name": "saradomin-portal-west",
+    "solid": true
+  }
+]

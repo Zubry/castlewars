@@ -1,5 +1,6 @@
 const uuid = require('uuid/v4');
 const Player = require('./player');
+const Map = require('./map');
 
 module.exports = class Game {
   constructor(options) {
@@ -8,6 +9,8 @@ module.exports = class Game {
 
     this.lobby = [];
     this.players = [];
+
+    this.map = new Map();
   }
 
   get_team_count(team) {
@@ -22,9 +25,9 @@ module.exports = class Game {
       const saradomin = this.get_team_count('saradomin');
 
       if (zamorak > saradomin) {
-        player.team = 'saradomin';
+        player.assign_team('saradomin');
       } else {
-        player.team = 'zamorak';
+        player.assign_team('zamorak');
       }
 
       this.players.push(player);
