@@ -12,3 +12,7 @@ http://web.archive.org/web/20070813034953/http://www.tip.it/runescape/?page=cast
 http://forums.zybez.net/topic/1104471-advanced-castle-wars-guide/
 
 https://www.youtube.com/watch?v=OaUCoyu_EQ0
+
+# Live Demo
+
+http://castlewars.herokuapp.com/
