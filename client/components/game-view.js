@@ -114,6 +114,21 @@ export default class GameView extends React.Component {
 
     this.state.stage.addChild(playerGraphics);
 
+    const other_players = this.state.players.filter((player) => player.id !== this.props.pid);
+    other_players
+      .forEach((player) => {
+        let texture = PIXI.Texture.fromImage('../../sprites/player.png');
+
+        const playerGraphics = new PIXI.Sprite(texture);
+        playerGraphics.x = (w >> 1) * 50 + offsetx + 25 + (player.x - me.x) * 50;
+        playerGraphics.y = (h >> 1) * 50 + offsety + 25 + (player.y - me.y) * 50;
+        console.log(playerGraphics.x, playerGraphics.y);
+        playerGraphics.anchor.x = 0.5;
+        playerGraphics.anchor.y = 0.5;
+        playerGraphics.rotation = player.orientation;
+        this.state.stage.addChild(playerGraphics);
+      });
+
     this.state.renderer.render(this.state.stage);
   }
 
