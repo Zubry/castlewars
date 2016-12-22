@@ -18,6 +18,8 @@ export default class GameView extends React.Component {
 
     const stage = new PIXI.Container();
 
+    this.mounted = false;
+
     this.state = {
       players: [],
       lobby: [],
@@ -38,15 +40,23 @@ export default class GameView extends React.Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
     this.props.socket
-      .on('game-tick', (data) => {
-        if (data.ticks <= 0) {
-          return false;
-        }
+      .on('game-tick', this.onGameTickReceived.bind(this));
+  }
 
-        this.setState(data)
-        this.onGameTick();
-      });
+  onGameTickReceived(data) {
+    console.log(data);
+    if (data.ticks <= 0 || !this.mounted) {
+      return false;
+    }
+
+    this.setState(data)
+    this.onGameTick();
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   onGameTick() {
