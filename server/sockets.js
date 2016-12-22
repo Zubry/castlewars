@@ -10,6 +10,12 @@ module.exports = function(io, game) {
       socket.emit('you-have-joined', player.id);
     });
 
+    socket.on('terrain-click', ({ x, y }) => {
+      game
+        .getPlayerByClientID(socket.id)
+        .path_to(game.map, x, y);
+    });
+
     socket.on('disconnect', function() {
       game.leave(socket);
     });

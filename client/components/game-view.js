@@ -2,8 +2,6 @@ import ElementContainer from 'react-element-container';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import GameView from './game-view';
-
 import Map from './../modules/map';
 const map = new Map();
 
@@ -12,7 +10,7 @@ const tileset = new Tileset();
 
 const PIXI = require('pixi.js');
 
-export default class JoinedGame extends React.Component {
+export default class GameView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -42,7 +40,7 @@ export default class JoinedGame extends React.Component {
   componentDidMount() {
     this.props.socket
       .on('game-tick', (data) => {
-        if (data.ticks < 0) {
+        if (data.ticks <= 0) {
           return false;
         }
 
@@ -86,6 +84,11 @@ export default class JoinedGame extends React.Component {
         terrain_sprite.x = i * 50 + offsetx;
         terrain_sprite.y = j * 50 + offsety;
 
+        terrain_sprite.interactive = true;
+        terrain_sprite.on('mousedown', (e) => {
+          this.props.socket.emit('terrain-click', { x, y });
+        })
+
         this.state.stage.addChild(terrain_sprite);
 
         if (!walls) {
@@ -97,9 +100,19 @@ export default class JoinedGame extends React.Component {
         wall_sprite.y = j * 50 + offsety;
 
         this.state.stage.addChild(wall_sprite);
-
       }
     }
+
+    let texture = PIXI.Texture.fromImage('../../sprites/player.png');
+
+    const playerGraphics = new PIXI.Sprite(texture);
+    playerGraphics.x = (w >> 1) * 50 + offsetx + 25;
+    playerGraphics.y = (h >> 1) * 50 + offsety + 25;
+    playerGraphics.anchor.x = 0.5;
+    playerGraphics.anchor.y = 0.5;
+    playerGraphics.rotation = me.orientation;
+
+    this.state.stage.addChild(playerGraphics);
 
     this.state.renderer.render(this.state.stage);
   }

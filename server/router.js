@@ -16,4 +16,8 @@ module.exports = function(app) {
   app.get('/tilesets/terrain.png', function (req, res) {
     res.sendfile(path.resolve(__dirname, '../maps/tilesets/terrain.png'));
   });
+
+  app.get('/sprites/player.png', function (req, res) {
+    res.sendfile(path.resolve(__dirname, '../maps/sprites/demo.png'));
+  });
 };

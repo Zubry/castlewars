@@ -33,9 +33,18 @@ module.exports = class Map {
   }
 
   at(x, y, z) {
+    if (x > 99 || y > 99 || x < 0 || y < 0 || z < 0) {
+      return {
+        terrain: 10,
+        walls: 0,
+        solid: true
+      }
+    }
+
     return {
       terrain: this.grid[z][0][x][y],
-      walls: this.grid[z][1][x][y]
+      walls: this.grid[z][1][x][y],
+      solid: false
     };
   }
 }

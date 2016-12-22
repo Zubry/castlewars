@@ -34,6 +34,11 @@ module.exports = class Game {
     }
   }
 
+  getPlayerByClientID(id) {
+    return this.players.find((p) => p.client.id === id)
+      || this.lobby.find((p) => p.client.id === id);
+  }
+
   leave(client) {
     if (this.lifespan < 0) {
       this.lobby = this.lobby.filter((p) => p.client.id === client.id);
@@ -54,10 +59,14 @@ module.exports = class Game {
     }
   }
 
+  move_players() {
+    this.players
+      .forEach((player) => player.step())
+  }
+
   end() {
     this.lifespan = -1 * this.options.ticks_between_games;
-    this.lobby = this.players
-      .map((p) => p.reset());
+    this.lobby = this.players.slice(0);
 
     this.players = [];
   }
