@@ -30,7 +30,7 @@ export default class JoinedGame extends React.Component {
       <div>
         {
           this.state.ticks < 0 ?
-            <div>
+            <div className="joined-game">
               <h1>A new game will start in {Math.floor(this.state.ticks * 300 / 1000) * -1 } seconds</h1>
               <h2>There are {this.state.lobby.length} players in the lobby</h2>
             </div>

@@ -20,4 +20,8 @@ module.exports = function(app) {
   app.get('/sprites/player.png', function (req, res) {
     res.sendfile(path.resolve(__dirname, '../maps/sprites/demo.png'));
   });
+
+  app.get('/global-css.css', function (req, res) {
+    res.sendfile(path.resolve(__dirname, '../client/main.css'));
+  });
 };

@@ -19,9 +19,6 @@ export default class GameWindow extends React.Component {
       .on('connected', (map) => this.setState({ connected: true }))
 
     this.props.socket
-      .on('game-tick', (c) => console.log(c));
-
-    this.props.socket
       .on('you-have-joined', (pid) => this.setState({ pid, joined: true }));
   }
 
@@ -32,11 +29,11 @@ export default class GameWindow extends React.Component {
 
   render() {
     if (!this.state.connected && !this.state.joined) {
-      return <div>
+      return <div className="not-connected">
         <h1>You are not connected!</h1>
       </div>;
     } else if (!this.state.joined) {
-      return <form>
+      return <form className="connected">
         <h1>You are connected to the server!</h1>
         <button onClick={this.handleSubmit.bind(this)}>Join</button>
       </form>

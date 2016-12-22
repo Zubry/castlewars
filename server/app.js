@@ -18,7 +18,6 @@ const sockets = require('./sockets.js')(io, game);
 server.listen(process.env.PORT || 8080);
 
 function game_tick() {
-  console.log('tick');
   game.increase_lifespan();
   game.move_players();
 

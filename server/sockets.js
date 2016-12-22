@@ -2,6 +2,7 @@ const Player = require('./modules/player');
 
 module.exports = function(io, game) {
   io.on('connection', function (socket) {
+    console.log('connect');
     socket.emit('connected', game.map.grid);
 
     socket.on('join-game', function () {
@@ -17,6 +18,7 @@ module.exports = function(io, game) {
     });
 
     socket.on('disconnect', function() {
+      console.log('disconnect');
       game.leave(socket);
     });
   });
