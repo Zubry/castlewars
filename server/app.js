@@ -12,6 +12,8 @@ const options = {
 const Game = require('./modules/game')
 const game = new Game(options);
 
+require('./scripts')(game.events);
+
 const routes = require('./router.js')(app);
 const sockets = require('./sockets.js')(io, game);
 
@@ -20,6 +22,7 @@ server.listen(process.env.PORT || 8080);
 function game_tick() {
   game.increase_lifespan();
   game.move_players();
+  game.fire_terrain_events();
 
   io.emit('game-tick', game.serialize())
 }

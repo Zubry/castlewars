@@ -1,6 +1,7 @@
 const uuid = require('uuid/v4');
 const Player = require('./player');
 const Map = require('./map');
+const EventEmitter = require('events');
 
 module.exports = class Game {
   constructor(options) {
@@ -9,6 +10,8 @@ module.exports = class Game {
 
     this.lobby = [];
     this.players = [];
+
+    this.events = new EventEmitter();
 
     this.map = new Map();
   }
@@ -41,9 +44,9 @@ module.exports = class Game {
 
   leave(client) {
     if (this.lifespan < 0) {
-      this.lobby = this.lobby.filter((p) => p.client.id === client.id);
+      this.lobby = this.lobby.filter((p) => p.client.id !== client.id);
     } else {
-      this.players = this.players.filter((p) => p.client.id === client.id);
+      this.players = this.players.filter((p) => p.client.id !== client.id);
     }
   }
 
@@ -62,6 +65,17 @@ module.exports = class Game {
   move_players() {
     this.players
       .forEach((player) => player.step())
+  }
+
+  fire_terrain_events() {
+    this
+      .players
+      .forEach((player) => this.events.emit(`on-${this.map.at(player.x, player.y, player.z).terrain.type}`, player, this));
+
+    this
+      .players
+      .filter((player) => this.map.at(player.x, player.y, player.z).objects)
+      .forEach((player) => this.events.emit(`on-object-${this.map.at(player.x, player.y, player.z).objects.gid - 80}`, player, this));
   }
 
   end() {

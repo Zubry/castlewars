@@ -89,4 +89,8 @@ module.exports = class Player {
       this.y = 88;
     }
   }
+
+  at(x, y, z) {
+    return this.x === x && this.y === y && this.z === z;
+  }
 }

@@ -4,13 +4,13 @@ const PIXI = require('pixi.js');
 // This will force browserify to recognize the json files
 require(`./../../maps/tilesets/terrain.json`);
 require(`./../../maps/tilesets/walls.json`);
+require(`./../../maps/tilesets/objects.json`);
 
 export default class Tileset {
   constructor() {
     this.terrain = this.load('terrain');
-    this.walls = this.load('walls');
-
-    console.log(this.walls);
+    this.walls = this.load('walls');;
+    this.objects = this.load('objects');
   }
 
   load(file) {
@@ -35,7 +35,9 @@ export default class Tileset {
   }
 
   sprite(n) {
-    if (n >= 40) {
+    if (n >= 80) {
+      return new PIXI.Sprite(this.objects[n - 80].texture);
+    } else if (n >= 40) {
       return new PIXI.Sprite(this.walls[n - 40].texture);
     } else {
       return new PIXI.Sprite(this.terrain[n].texture);

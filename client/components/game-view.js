@@ -46,7 +46,6 @@ export default class GameView extends React.Component {
   }
 
   onGameTickReceived(data) {
-    console.log(data);
     if (data.ticks <= 0 || !this.mounted) {
       return false;
     }
@@ -84,7 +83,7 @@ export default class GameView extends React.Component {
         const y = me.y + j - (h >> 1);
         const z = me.z;
 
-        const { terrain, walls } = map.at(x, y, z);
+        const { terrain, walls, objects } = map.at(x, y, z);
 
         if (!terrain) {
           continue;
@@ -101,15 +100,21 @@ export default class GameView extends React.Component {
 
         this.state.stage.addChild(terrain_sprite);
 
-        if (!walls) {
-          continue;
+        if (walls && walls !== 0) {
+          const wall_sprite = tileset.sprite(walls);
+          wall_sprite.x = i * 50 + offsetx;
+          wall_sprite.y = j * 50 + offsety;
+
+          this.state.stage.addChild(wall_sprite);
         }
 
-        const wall_sprite = tileset.sprite(walls);
-        wall_sprite.x = i * 50 + offsetx;
-        wall_sprite.y = j * 50 + offsety;
+        if (objects) {
+          const object_sprite = tileset.sprite(objects.gid);
+          object_sprite.x = i * 50 + offsetx;
+          object_sprite.y = j * 50 + offsety;
 
-        this.state.stage.addChild(wall_sprite);
+          this.state.stage.addChild(object_sprite);
+        }
       }
     }
 
@@ -132,7 +137,7 @@ export default class GameView extends React.Component {
         const playerGraphics = new PIXI.Sprite(texture);
         playerGraphics.x = (w >> 1) * 50 + offsetx + 25 + (player.x - me.x) * 50;
         playerGraphics.y = (h >> 1) * 50 + offsety + 25 + (player.y - me.y) * 50;
-        console.log(playerGraphics.x, playerGraphics.y);
+
         playerGraphics.anchor.x = 0.5;
         playerGraphics.anchor.y = 0.5;
         playerGraphics.rotation = player.orientation;
