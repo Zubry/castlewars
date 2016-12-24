@@ -6,7 +6,7 @@ const io = require('socket.io')(server);
 
 const options = {
   max_lifespan: 400,
-  ticks_between_games: 100
+  ticks_between_games: 50
 };
 
 const Game = require('./modules/game')
@@ -23,6 +23,7 @@ function game_tick() {
   game.increase_lifespan();
   game.move_players();
   game.fire_terrain_events();
+  game.attack_players();
 
   io.emit('game-tick', game.serialize())
 }

@@ -19,8 +19,13 @@
    eJztnQ1u2zAMRnOdtVm7C6zVmt3/TAuBGhMIUSb1Y5Py9wAhjiMrCl9ky5KC3G4AABCX92d6RSqmXx1xbeXlhPeMxNFORvr4sVDKOdJJ7qPl3LUdc0bbnskbe37U53sRtq3H3wfUxRtnOJnpY4W2c7STmT5WaTtHOoEPHbmTmZ8HPvSQE+p7/Zz4HvDhC/jwBXz4Aj580etj484e8/LgQw8fLyEs/Wve54CPPkrtoyd+8NHHSB+8bw4fdiQfr9/bPXM38GFnVPtA/2oM8OGL3EfeV7LMo0ljOvBhZ2bM4MMOfMzl8Uyfz/RXmR8+5vLx/ZiU+Y/wQUSes+2h1Qexd19hXX/CuaKTHh8lSuMfrVzxvNXjo9Sfzfuxb0KevfVkG/Cxz6zrB1+TQcycd/aKFx9E3p6u6ILw5APAhzfgwxfw4Qv48AV8+AI+fAEfvljFRz52KY1DavKczQo+3gv7eLw1eTwQ3UcpzgSvnzTW7M1JZB+SC0Lrg/DkJKqPmgvC4oPw4iSijz0XBK9faTyf48FJRB+17/o2t1WqXwQnK/m4C9sWzj4PR/Qhfc9HzGHBRxt8bn7UfOLZ85JRfYxgltMePPvQrNGayWchzcazD+26oFn8LqTZePZRY1t3bFl7HIGIPh6FfS1OPDqN6OND2L8X0/y4UU5Hs5IPy3GlMlJjuSO5og+pn5Qayx1JRB9fjcfteUyN5Y4kog9C44RfD/Z8/Gmsy0ii+iD2nCT2vObDgwsisg+i5iQp83pxQUT3QVjizPN6ckGs4IOgOOfjGrU4fynynMUqPlYBPnwBHzZmj3nBh54jxrzgQ490/1Katyql3N1DyLORlHWCj3aSoay08/rGlX2U7nNKc4hSyvvXvH/O5x+Tsk5X9kHkTtKE8nH9sGON2cyy4cMWM37dHlk2ccR/WnjHEjNrH2Bm21uVWsyk+0Wpf8sTfNipxSxvD0nY31o2KNPiY+vf3m71PjF82NHGbO/1nrLBf1rax4iyQRn48AV8+AI+fAEfvoAPX8CHL+DDFyv4sP6vhWe0PkaXPZK8ntGdrNA++NxzZCe19abSuLr28x55/VjJiUSU89XG6k4kH8l4vDb/CLgT7XqyK6SNpI7mGFp/A3gV0gnvKa0JQ/L52xQAANDyDzwW0AQ=
   </data>
  </layer>
- <objectgroup name="ground-level-objects" width="100" height="100">
+ <objectgroup name="ground-level-objects" width="100" height="100" visible="0">
   <object gid="81" x="1100" y="400"/>
+  <object gid="82" x="1250" y="850"/>
+  <object gid="82" x="1250" y="900"/>
+  <object gid="82" x="1250" y="950"/>
+  <object gid="82" x="1250" y="1000"/>
+  <object gid="82" x="1200" y="1000"/>
  </objectgroup>
  <layer name="second-level" width="100" height="100">
   <data encoding="base64" compression="zlib">
@@ -34,6 +39,11 @@
  </layer>
  <objectgroup name="second-level-objects" width="100" height="100">
   <object gid="81" x="1100" y="400"/>
+  <object gid="82" x="1200" y="1000"/>
+  <object gid="82" x="1250" y="1000"/>
+  <object gid="82" x="1250" y="950"/>
+  <object gid="82" x="1250" y="900"/>
+  <object gid="82" x="1250" y="850"/>
  </objectgroup>
  <layer name="third-level" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">

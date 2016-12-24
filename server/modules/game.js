@@ -78,6 +78,18 @@ module.exports = class Game {
       .forEach((player) => this.events.emit(`on-object-${this.map.at(player.x, player.y, player.z).objects.gid - 80}`, player, this));
   }
 
+  attack_players() {
+    this
+      .players
+      .filter((player) => player.canAttack())
+      .forEach((player) => {
+        if (player.canAttack()) {
+          player.facePoint({ x: player.combat.target.x, y: player.combat.target.y });
+          player.combat.attack();
+        }
+      })
+  }
+
   end() {
     this.lifespan = -1 * this.options.ticks_between_games;
     this.lobby = this.players.slice(0);
@@ -94,6 +106,12 @@ module.exports = class Game {
       });
 
     this.lobby = [];
+  }
+
+  getPlayerAt({x, y, z}) {
+    return this
+      .players
+      .find((p) => p.x === x && p.y === y && p.z === z);
   }
 
   serialize() {

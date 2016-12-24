@@ -1,6 +1,9 @@
 const uuid = require('uuid/v4');
 const path = require('./pathfinding');
 
+const Combat = require('./combat');
+const EquipmentFactory = require('./equipment-factory');
+
 module.exports = class Player {
   constructor(client) {
     this.client = client;
@@ -14,11 +17,15 @@ module.exports = class Player {
     this.path = [];
 
     this.team = undefined;
+
+    this.combat = new Combat();
   }
 
   assign_team(team) {
     this.team = team;
 
+    this.combat.equipment.equip(new EquipmentFactory(`${team}-hood`));
+    this.combat.equipment.equip(new EquipmentFactory(`${team}-cape`));
     this.respawn();
   }
 
@@ -34,7 +41,13 @@ module.exports = class Player {
       x: this.x,
       y: this.y,
       z: this.z,
-      orientation: this.orientation
+      orientation: this.orientation,
+      health: this.combat.health,
+      maxHealth: this.combat.maxHealth,
+      animations: {
+        attacking: this.canAttack(),
+        walking: this.path.length > 0
+      }
     };
   }
 
@@ -42,14 +55,24 @@ module.exports = class Player {
     this.x = x;
     this.y = y;
     this.z = z !== undefined ? z : this.z;
+
+    this.path = [];
   }
 
   path_to(map, x, y) {
+    this.combat.deselectTarget();
     this.path = path.find(map, { x: this.x, y: this.y, z: this.z }, { x, y });
   }
 
   step() {
+    // If we don't have a path, there isn't much we can do
     if (this.path.length === 0) {
+      return false;
+    }
+
+    // If we have a target, we need to stop 1 spot short of them
+    if (this.combat.target && this.path.length === 1) {
+      this.path = [];
       return false;
     }
 
@@ -82,15 +105,39 @@ module.exports = class Player {
     if (this.team === 'zamorak') {
       this.z = 0;
       this.x = 13;
-      this.y = 12;
+      this.y = 13;
     } else if (this.team === 'saradomin') {
       this.z = 0;
       this.x = 87;
-      this.y = 88;
+      this.y = 87;
     }
+
+    this.combat.deselectTarget();
+    this.combat.full_heal();
+    this.path = [];
   }
 
   at(x, y, z) {
     return this.x === x && this.y === y && this.z === z;
+  }
+
+  // The main difference between Manhattan distance and Chebyshev (chess) distance
+  // Is that diagonal movements are 2 units away in Manhattan
+  // And only 1 in Chebyshev distance
+  withinManhattanDistance({x, y, z}, distance) {
+    return this.z === z
+      && (Math.abs(this.x - x) + Math.abs(this.y - y)) <= distance;
+  }
+
+  withinChebyshevDistance({x, y, z}, distance) {
+    return this.z === z
+      && Math.abs(this.x - x) <= distance
+      && Math.abs(this.y - y) <= distance;
+  }
+
+  canAttack() {
+    const range = this.combat.equipment.weapon ? this.combat.equipment.weapon.range : 1;
+
+    return this.combat.target !== undefined && this.withinChebyshevDistance(this.combat.target, range);
   }
 }

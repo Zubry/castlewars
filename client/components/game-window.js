@@ -30,7 +30,7 @@ export default class GameWindow extends React.Component {
   render() {
     if (!this.state.connected && !this.state.joined) {
       return <div className="not-connected">
-        <h1>You are not connected!</h1>
+        <h1>Connecting to the server...</h1>
       </div>;
     } else if (!this.state.joined) {
       return <form className="connected">

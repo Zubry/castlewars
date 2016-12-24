@@ -127,7 +127,18 @@ export default class GameView extends React.Component {
     playerGraphics.anchor.y = 0.5;
     playerGraphics.rotation = me.orientation;
 
+    const healthBarNegative = new PIXI.Graphics();
+    healthBarNegative.beginFill(0xFF0000);
+    healthBarNegative.drawRect((w >> 1) * 50 + offsetx, (h >> 1) * 50 + offsety - 4, 50, 4);
+
+    const healthBarPositive = new PIXI.Graphics();
+    healthBarPositive.beginFill(0x00FF00);
+    healthBarPositive.drawRect((w >> 1) * 50 + offsetx, (h >> 1) * 50 + offsety - 4, me.health / me.maxHealth * 50, 4);
+
     this.state.stage.addChild(playerGraphics);
+
+    this.state.stage.addChild(healthBarNegative);
+    this.state.stage.addChild(healthBarPositive);
 
     const other_players = this.state.players.filter((player) => player.id !== this.props.pid);
     other_players
@@ -141,7 +152,19 @@ export default class GameView extends React.Component {
         playerGraphics.anchor.x = 0.5;
         playerGraphics.anchor.y = 0.5;
         playerGraphics.rotation = player.orientation;
+
+        const healthBarNegative = new PIXI.Graphics();
+        healthBarNegative.beginFill(0xFF0000);
+        healthBarNegative.drawRect((w >> 1) * 50 + offsetx + (player.x - me.x) * 50, (h >> 1) * 50 + offsety - 4 + (player.y - me.y) * 50, 50, 4);
+
+        const healthBarPositive = new PIXI.Graphics();
+        healthBarPositive.beginFill(0x00FF00);
+        healthBarPositive.drawRect((w >> 1) * 50 + offsetx + (player.x - me.x) * 50, (h >> 1) * 50 + offsety - 4 + (player.y - me.y) * 50, player.health / player.maxHealth * 50, 4);
+
         this.state.stage.addChild(playerGraphics);
+
+        this.state.stage.addChild(healthBarNegative);
+        this.state.stage.addChild(healthBarPositive);
       });
 
     this.state.renderer.render(this.state.stage);

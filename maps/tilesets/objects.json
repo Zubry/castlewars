@@ -4,5 +4,11 @@
     "y": 0,
     "name": "ladder",
     "solid": false
+  },
+  {
+    "x": 1,
+    "y": 0,
+    "name": "stairs",
+    "solid": false
   }
 ]

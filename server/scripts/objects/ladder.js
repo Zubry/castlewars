@@ -6,4 +6,14 @@ module.exports = e => {
       player.teleport(22, 8, 0);
     }
   });
+
+  e.on('click-object-1', (player, state, {x, y}) => {
+    if (player.withinManhattanDistance({ x: 22, y: 7, z: 0}, 1)) {
+      player.teleport(22, 8, 1);
+    } else if (player.withinManhattanDistance({ x: 22, y: 7, z: 1}, 1)) {
+      player.teleport(22, 8, 0);
+    } else {
+      player.path_to(state.map, x, y);
+    }
+  });
 }
